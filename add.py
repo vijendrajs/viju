@@ -3,6 +3,12 @@ def get_negative_numbers(numbers):
     if negative_numbers:
         raise Exception('negative numbers not allowed', ', '.join(map(str, negative_numbers)))
 
+def skip_large_numbers(numbers):
+    numbers = [number for number in numbers if number <= 1000]
+    return numbers
+
+
+
 def add(numbers=''):
     numbers = str(numbers)
     if not numbers:
@@ -21,8 +27,13 @@ def add(numbers=''):
         for delimiter in delimeterList:
             numbers = numbers.replace(delimiter, ',')
         numbersList = [int(num) for num in numbers.split(',') if num]
+
         #Raise Exceptions for negetive numbers
         get_negative_numbers(numbersList)
+
+        #Skip numbers having values > 1000
+        numbersList = skip_large_numbers(numbersList)
+
         numbersList = list(map(int, numbersList))
         result = sum(numbersList)
         return result
@@ -73,3 +84,7 @@ try:
     print('result', result)
 except Exception as e:
     print(e)
+
+#Case: Skip numbers having values > 1000
+result = add('//;;\n1,2,3\n3,1001, 1')
+print('result', result)
