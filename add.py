@@ -2,12 +2,13 @@ def add(numbers=''):
     numbers = str(numbers)
     if not numbers:
         return 0
-  
-    delimeter = ','
-    delimeter2 = '\n'
-    if delimeter in numbers:
-        numbers = numbers.replace(delimeter2, ',')
-        numbersList = numbers.split(delimeter)
+   
+    mainDelimeter = ','
+    delimeterList = [',', '\n', '?']
+    if any(delimiter in numbers for delimiter in delimeterList):
+        for delimiter in delimeterList:
+            numbers = numbers.replace(delimiter, ',')
+        numbersList = numbers.split(mainDelimeter)
         numbersList = list(map(int, numbersList))
         result = sum(numbersList)
         return result
@@ -36,4 +37,10 @@ print('result', result)
 result = add('1\n2,5,6')
 print('result', result)
 result = add('1\n2,3,4\n5,6')
+print('result', result)
+
+#Case: [',', '\n', '?'] as delimeter
+result = add('1\n2,3,4\n5?6')
+print('result', result)
+result = add('1\n2,3,4\n5?6?7')
 print('result', result)
