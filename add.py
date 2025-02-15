@@ -40,6 +40,7 @@ def add(numbers=''):
     else:
         return numbers
 
+
 #Case: Empty String
 result = add("")
 print('result', result)
@@ -87,4 +88,8 @@ except Exception as e:
 
 #Case: Skip numbers having values > 1000
 result = add('//;;\n1,2,3\n3,1001, 1')
+print('result', result)
+
+#delimeter can be of any lenght '###' and multiple delimeters, just add the delimeters in delimeterList object.
+result = add('//###\n1###2###,,3\n3,1001, 1')
 print('result', result)
