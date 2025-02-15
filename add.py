@@ -1,3 +1,8 @@
+def get_negative_numbers(numbers):
+    negative_numbers = [number for number in numbers if number < 0]
+    if negative_numbers:
+        raise Exception('negative numbers not allowed', ', '.join(map(str, negative_numbers)))
+
 def add(numbers=''):
     numbers = str(numbers)
     if not numbers:
@@ -16,6 +21,8 @@ def add(numbers=''):
         for delimiter in delimeterList:
             numbers = numbers.replace(delimiter, ',')
         numbersList = [int(num) for num in numbers.split(',') if num]
+        #Raise Exceptions for negetive numbers
+        get_negative_numbers(numbersList)
         numbersList = list(map(int, numbersList))
         result = sum(numbersList)
         return result
@@ -59,3 +66,10 @@ result = add('//;;\n1;;2')
 print('result', result)
 result = add('//;;\n1;;2;;,3\n3')
 print('result', result)
+
+#Case: in case of negetive numbers raise exception
+try:
+    result = add('//;;\n1;;2;;,3\n-3, -2')
+    print('result', result)
+except Exception as e:
+    print(e)
